@@ -1,5 +1,3 @@
-// export { default } from 'next-auth/middleware'
-
 import { withAuth } from 'next-auth/middleware'
 import { NextResponse } from 'next/server'
 
@@ -21,5 +19,6 @@ export default withAuth(
 
 
 export const config = {
-    matcher: ['/((?!register|api|login|about).*)']
+    // matcher: ['/((?!register|api|login|about).*)']
+    matcher: ['/admin/:path*', '/vote']
 }
