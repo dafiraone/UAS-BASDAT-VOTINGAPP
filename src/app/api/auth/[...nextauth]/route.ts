@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
               return null
           }
 
-          const user = await prisma.$queryRaw`SELECT * from user where email = ${credentials.username}`
+          const user: any = await prisma.$queryRaw`SELECT * from user where email = ${credentials.username}`
 
         if (!user[0]) {
           // Any object returned will be saved in `user` property of the JWT

@@ -1,8 +1,11 @@
-export declare global {
+declare global {
     interface Window {
         [key: any]: any
+        showModal: () => void
     }
 }
+
+export {}
 
 interface User {
     id: number
@@ -11,12 +14,4 @@ interface User {
     password: string
     role: string
     status_pilih: Boolean
-}
-
-interface Votes {
-    id: number
-    nama: string
-    visi: string
-    misi: string
-    jumlah_pemilih: number
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function About() {
     const session = await getServerSession()
     return <>
-        <Navbar title="About Us" user={session?.user?.name}>
+        <Navbar title="About Us" user={session?.user?.name!}>
             <Link href={'/login'}>Login</Link>
         </Navbar>
         <main className="text-center text-black">

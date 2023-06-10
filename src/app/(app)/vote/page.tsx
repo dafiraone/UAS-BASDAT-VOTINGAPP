@@ -4,11 +4,18 @@ import Image from "next/image"
 import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Votes } from "../../../../types"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
     title: 'Mulai Voting',
+}
+
+interface Votes {
+    id: number
+    nama: string
+    visi: string
+    misi: string
+    jumlah_pemilih: number
 }
 
 export default function Vote() {
@@ -60,7 +67,7 @@ export default function Vote() {
 
                             <div className="card-actions">
                                 <button className="btn btn-neutral" onClick={() => window[v.id].showModal()}>VOTE</button>
-                                <dialog id={v.id} className="modal">
+                                <dialog id={v.id.toString()} className="modal">
                                     <form method="dialog" className="modal-box">
                                         <h3 className="font-bold text-lg">Yakin?</h3>
                                         <p className="py-4">Kamu ingin vote {v.nama}</p>

@@ -13,7 +13,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
   return (
     <>
-      <Navbar title="Voting App" user={session?.user?.name}>
+      <Navbar title="Voting App" user={session?.user?.name!}>
         <Link href={'/login'}>Login</Link>
         <Link href={'/about'}>About</Link>
       </Navbar>
