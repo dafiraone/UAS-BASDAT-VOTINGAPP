@@ -30,8 +30,7 @@ export const authOptions: NextAuthOptions = {
           }
 
           const user: any = await prisma.$queryRaw`SELECT * from user where email = ${credentials.username}`
-
-        if (!user[0]) {
+        if (!user[0] || !!!Number(user[0].status_pilih)) {
           // Any object returned will be saved in `user` property of the JWT
           return null
         }
@@ -39,41 +38,21 @@ export const authOptions: NextAuthOptions = {
 
         const isPasswordValid = await compare(credentials.password, user[0].password)
         if (!isPasswordValid) return null
-        console.log(user[0])
-
-        return {
-          id: user[0].id+'',
-          email: user[0].email,
-          name: user[0].name,
-          randomKey: "NEXTS"
-        }
+        const {password, ...userData} = user[0]
+        return userData
 
       }
     })
   ],
   callbacks: {
     session: ({session, token}) => {
-      // console.log('Session Callback ', {session, token})
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token.id,
-          randomKey: token.randomKey
-        }
-      }
+      const {jti, iat, ...tokenValue} = token
+      return {...session, ...tokenValue}
     },
     jwt: ({token, user}) => {
-      // console.log('JWT Callback ', {token, user})
-      if (user) {
-        const u = user as unknown as any
-        return {
-          ...token,
-          id: u.id,
-          randomKey: u.randomKey
-        }
-      }
-      return token
+      const {jti, iat, ...tokenValue} = token
+      console.log(user)
+      return {...token, ...user}
     }
   }
 }

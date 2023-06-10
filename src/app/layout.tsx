@@ -4,6 +4,10 @@ import Providers from '@/lib/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const metadata: Metadata = {
+  title: 'Voting App',
+}
+
 export default function RootLayout({
   children,
 }: {

@@ -12,6 +12,7 @@ export default async function About() {
     const session = await getServerSession()
     return <>
         <Navbar title="About Us" user={session?.user?.name!}>
+            <Link href={'/'}>Home</Link>
             <Link href={'/login'}>Login</Link>
         </Navbar>
         <main className="text-center text-black">

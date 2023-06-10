@@ -4,11 +4,8 @@ import Image from "next/image"
 import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-    title: 'Mulai Voting',
-}
+import { signOut, useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 interface Votes {
     id: number
@@ -19,7 +16,10 @@ interface Votes {
 }
 
 export default function Vote() {
+    const {data: session} = useSession()
     const [votes, setVotes] = useState<Votes[]>([])
+    const [onVoteAction, setOnVoteAction] = useState(false)
+    const router = useRouter()
 
     useEffect(() => {
         fetch('/api/getVotes')
@@ -27,13 +27,30 @@ export default function Vote() {
             .then(data => setVotes(data))
     }, [])
 
+    const onSubmit = async (voteId: number) => {
+        setOnVoteAction(true)
+        try {
+            const res = await fetch('/api/voteAction', {
+                method: 'POST',
+                body: JSON.stringify({
+                    session: session?.user?.email, voteId
+                }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            signOut()
+        } catch (error) {
+            console.log(error)
+        }
+      }
+
     return <>
-        <Navbar title="VOTE">
+        <Navbar title="VOTE" user={session?.user?.name!}>
             <Link href={'/'}>Home</Link>
         </Navbar>
         <main>
-            <h1 className="text-3xl font-bold text-center my-10 md:mb-20">Pilih Salah Satu</h1>
-            <section className="flex flex-wrap flex-col md:flex-row gap-10 justify-center items-center mb-16">
+            {onVoteAction ? (<h1 className="text-3xl font-bold text-center my-10 md:mb-20">Terimakasih Sudah Memilih</h1>)
+            : (<h1 className="text-3xl font-bold text-center my-10 md:mb-20">Pilih Salah Satu</h1>)}
+            <section className={`${onVoteAction ? 'hidden' : 'flex'} flex-wrap flex-col md:flex-row gap-10 justify-center items-center mb-16`}>
                 {votes.map(v => (
                     <div key={v.id} className="card w-96 bg-base-100 shadow-xl">
                         <figure className="px-10 pt-10">
@@ -72,7 +89,7 @@ export default function Vote() {
                                         <h3 className="font-bold text-lg">Yakin?</h3>
                                         <p className="py-4">Kamu ingin vote {v.nama}</p>
                                         <div className="modal-action">
-                                            <button className="btn">VOTE</button>
+                                            <button className="btn" onClick={() => onSubmit(v.id)}>VOTE</button>
                                         </div>
                                     </form>
                                 </dialog>

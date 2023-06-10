@@ -3,13 +3,14 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Metadata } from "next"
+import { useSession } from "next-auth/react"
 
 export const metadata: Metadata = {
     title: 'Admin Page',
 }
 
 export default function Admin() {
-
+    const {data: session} = useSession()
     const [name, setName] = useState<string>('')
     const [visi, setVisi] = useState<string>('')
     const [misi, setMisi] = useState<string>('')
