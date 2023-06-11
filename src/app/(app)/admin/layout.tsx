@@ -33,6 +33,7 @@ export default async function RootLayout({
                 <div className='flex gap-5 items-center px-4'>
                   <LogoutButton />
                   <p>{session?.user?.name}</p>
+                  <Link href={'/'}>Home</Link>
                 </div>
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
