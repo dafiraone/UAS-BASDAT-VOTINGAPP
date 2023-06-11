@@ -44,6 +44,7 @@ export default function Edit({ params: voteId }: Params) {
         headers: { 'Content-Type': 'application/json' }
       })
       if (res.ok) {
+        router.refresh()
         router.push('/admin/candidate')
       } else {
         const err = await res.json()

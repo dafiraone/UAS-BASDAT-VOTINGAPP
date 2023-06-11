@@ -1,6 +1,8 @@
 import PieChart from "@/components/PieChart"
 import CandidateList from "@/lib/candidateList"
+
 export const revalidate = 10
+
 export default async function Result() {
     const dataVoting: any = await CandidateList()
     const voteData = {
