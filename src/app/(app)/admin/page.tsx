@@ -1,19 +1,37 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 
 export default function Admin() {
     const [name, setName] = useState<string>('')
+    const [image, setImage] = useState<string | ArrayBuffer | null>("")
     const [visi, setVisi] = useState<string>('')
     const [misi, setMisi] = useState<string>('')
     const [errorMessage, setErrorMessage] = useState<string>('')
+
+    const uploadImage = (e: any) => {
+        if (e.target.files[0].size < 3145728) {
+            const reader = new FileReader()
+            reader.readAsDataURL(e.target.files[0])
+            reader.onload = () => {
+                setImage(reader.result)
+            }
+            reader.onerror = (error) => {
+                console.log("Error: ", error)
+            }
+        } else {
+            setErrorMessage("Ukuran gambar maximal 5 MB")
+            setInterval(() => { window.location.reload() }, 2000)
+        }
+    }
 
     const onSubmit = async () => {
         try {
             const res = await fetch('/api/addVote', {
                 method: 'POST',
                 body: JSON.stringify({
-                    name, visi, misi
+                    name, visi, misi, image
                 }),
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -42,6 +60,26 @@ export default function Admin() {
                         onChange={e => setName(e.target.value)}
                     />
                 </label>
+            </div>
+            <br />
+            <div className="form-control">
+                <label className="label">
+                    <span className="label-text text-2xl">Gambar</span>
+                </label>
+                <label className="input-group">
+                    <input
+                        type="file"
+                        accept="image/png, image/jpeg, image/jpg, image/webp"
+                        onChange={uploadImage}
+                    />
+                </label>
+                {image && <Image
+                    src={image as string}
+                    className="mt-2"
+                    alt=""
+                    width={300}
+                    height={300}
+                />}
             </div>
             <br />
             <div className="form-control">

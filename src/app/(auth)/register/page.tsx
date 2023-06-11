@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
-import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
 
 export default function Register() {
@@ -12,8 +11,6 @@ export default function Register() {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [errorStatus, setErrorStatus] = useState<boolean>(false)
-
-    const router = useRouter()
 
     const onSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

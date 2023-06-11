@@ -1,20 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 
-import { signOut } from "next-auth/react";
-import Image from "next/image";
-import { useState } from "react";
-
+import { signOut } from "next-auth/react"
+import Image from "next/image"
+import { useState } from "react"
 
 type Votes = {
     candidate: {
         id: number
+        image: string
         nama: string
         visi: string
         misi: string
     }[]
     session: string
 }
-
 
 export default function CardCandidate({ candidate, session }: Votes) {
     const [onVoteAction, setOnVoteAction] = useState(true)
@@ -43,9 +43,12 @@ export default function CardCandidate({ candidate, session }: Votes) {
                     <div className="flex flex-wrap gap-16 items-center justify-center">
                         {candidate.map((v: any) => <div key={v.id} className="card w-96 bg-base-100 shadow-xl">
                             <figure className="px-10 pt-10">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1666919643134-d97687c1826c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                                {v.image ? <Image
+                                    src={v.image}
                                     alt="" className="rounded-xl" width={500} height={500} />
+                                    : <Image
+                                        src={'/img/Vote_Illustration.png'}
+                                        alt="" className="rounded-xl w-[150px] h-[150px] object-cover object-top" width={500} height={500} />}
                             </figure>
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title">{v.nama}</h2>

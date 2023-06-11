@@ -8,14 +8,12 @@ import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 
 export default function Login() {
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/vote'
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     signIn('credentials', {
-      username: email, password, callbackUrl
+      username: email, password, callbackUrl: "/"
     })
   }
 

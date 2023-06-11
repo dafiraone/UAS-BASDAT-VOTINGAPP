@@ -7,6 +7,7 @@ import CandidateList from "@/lib/candidateList"
 type Votes = {
     id: number
     nama: string
+    image: string
     visi: string
     misi: string
     jumlah_pemilih?: number
@@ -20,7 +21,7 @@ export default async function Vote() {
             <Link href={'/'}>Home</Link>
         </Navbar>
         <main>
-            <section className="pb-16">
+            <section className="pb-16 px-6">
                 <CardCandidate candidate={candidate} session={session?.user?.email!} />
             </section>
         </main>

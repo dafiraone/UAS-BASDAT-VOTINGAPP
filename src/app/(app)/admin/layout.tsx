@@ -26,17 +26,17 @@ export default async function RootLayout({
               <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content flex flex-col items-center justify-center">
                 {/* Page content here */}
-                <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button self-end lg:hidden mt-5">Open drawer</label>
+                <div className='self-end text-center flex gap-3 items-center mx-auto my-10'>
+                  <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden mt-5">Open drawer</label>
+                  <p>{session?.user?.name}</p>
+                  <Link href={'/'}>Home</Link>
+                  <LogoutButton />
+                </div>
                 {children}
               </div>
               <div className="drawer-side">
-                <div className='flex gap-5 items-center px-4'>
-                  <LogoutButton />
-                  <p>{session?.user?.name}</p>
-                  <Link href={'/'}>Home</Link>
-                </div>
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
+                <ul className="menu p-4 w-60 h-full bg-base-200 text-base-content">
                   {/* Sidebar content here */}
                   <li>
                     <Link href={'/admin'}>Add Candidate</Link>

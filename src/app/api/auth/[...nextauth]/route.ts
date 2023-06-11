@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
           return null
         }
 
-        const user: any = await prisma.$queryRaw`SELECT * from User where email = ${credentials.username}`
+        const user: any = await prisma.$queryRaw`SELECT id, name, password, email, role, status_pilih from User where email = ${credentials.username}`
         if (!user[0] || !!!Number(user[0].status_pilih)) {
           // Any object returned will be saved in `user` property of the JWT
           return null
@@ -40,7 +40,6 @@ export const authOptions: NextAuthOptions = {
         if (!isPasswordValid) return null
         const { password, ...userData } = user[0]
         return userData
-
       }
     })
   ],

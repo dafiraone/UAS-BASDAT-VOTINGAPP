@@ -2,9 +2,9 @@ import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-    const { name, visi, misi } = await req.json()
+    const { name, visi, misi, image } = await req.json()
     try {
-        await prisma.$queryRaw`INSERT INTO Pilihan VALUES (null, ${name}, ${visi}, ${misi}, 0)`
+        await prisma.$queryRaw`INSERT INTO Pilihan VALUES (null, ${name}, ${image}, ${visi}, ${misi}, 0)`
     } catch (error: any) {
         return NextResponse.json({
             message: error.message,

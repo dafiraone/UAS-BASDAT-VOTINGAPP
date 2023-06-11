@@ -8,11 +8,12 @@ import { startTransition, useEffect, useState } from "react"
 type Candidate = {
     id: number
     nama: string
+    image: string
     visi: string
     misi: string
 }
 
-export default function CandidateCard({ id, nama, visi, misi }: Candidate) {
+export default function CandidateCard({ id, nama, visi, misi, image }: Candidate) {
     const [rePage, setRePage] = useState(false)
     const router = useRouter()
 
@@ -38,9 +39,12 @@ export default function CandidateCard({ id, nama, visi, misi }: Candidate) {
     return (
         <div key={id} className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
-                <Image
-                    src="https://images.unsplash.com/photo-1666919643134-d97687c1826c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80"
+                {image ? <Image
+                    src={image}
                     alt="" className="rounded-xl" width={500} height={500} />
+                    : <Image
+                        src={'/img/Vote_Illustration.png'}
+                        alt="" className="rounded-xl w-[150px] h-[150px] object-cover object-top" width={500} height={500} />}
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{nama}</h2>
