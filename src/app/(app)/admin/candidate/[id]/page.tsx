@@ -103,7 +103,7 @@ export default function Edit({ params: voteId }: Params) {
           />
         </label>
       </div>
-      <button type="submit" className="btn m-auto mt-9">Tambah Vote</button>
+      <button type="submit" className="btn m-auto mt-9">Edit Vote</button>
     </form >
   )
 }
