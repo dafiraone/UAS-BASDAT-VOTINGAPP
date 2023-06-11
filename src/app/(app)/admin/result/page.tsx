@@ -9,8 +9,7 @@ export default async function Result() {
             {
                 label: "Popularity",
                 data: dataVoting.map((voted: any) => voted.jumlah_pemilih),
-                // backgroundColor: ['red', 'green', 'blue', 'orange', 'yellow', 'purple', 'gray', 'violet', 'teal', 'pink', 'gold', 'cyan', 'black'],
-                backgroundColor: ['red'],
+                backgroundColor: ['red', 'green', 'blue', 'orange', 'yellow', 'purple', 'gray', 'violet', 'teal', 'pink', 'gold', 'cyan', 'black'],
                 borderColor: '#f4436',
                 borderWidth: 2
             }

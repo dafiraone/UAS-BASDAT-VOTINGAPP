@@ -7,11 +7,6 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 
-export const metadata = {
-  title: 'Voting App',
-  description: 'Aplikasi Web Voting Online yang dibuat oleh Kelompok Daffa & Zidan',
-}
-
 export default function Login() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/vote'

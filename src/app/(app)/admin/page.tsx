@@ -1,11 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Metadata } from "next"
-
-export const metadata: Metadata = {
-    title: 'Admin Page',
-}
 
 export default function Admin() {
     const [name, setName] = useState<string>('')
