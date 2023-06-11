@@ -7,22 +7,13 @@ import { useState } from "react"
 import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 
-export const metadata = {
-  title: 'Voting App',
-  description: 'Aplikasi Web Voting Online yang dibuat oleh Kelompok Daffa & Zidan',
-}
-
 export default function Login() {
-  const searchParams= useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/vote'
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
-  const [errorMessage, setErrorMessage] = useState<string>('')
-
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     signIn('credentials', {
-      username: email, password, callbackUrl
+      username: email, password, callbackUrl: "/"
     })
   }
 
@@ -56,13 +47,13 @@ export default function Login() {
           <div className="flex flex-col items-center">
             <p className="text-3xl font-bold mb-20">Login</p>
             <form onSubmit={onSubmit} className="md:border-2 rounded-lg border-slate-800 p-8">
-              {errorMessage && <p className="text-red-500">{errorMessage}</p>}
               <div className="form-control">
                 <label className="label">
                   <span className="label-text text-2xl">Email</span>
                 </label>
                 <label className="input-group">
                   <input
+                    autoFocus
                     autoComplete="on"
                     required
                     type="email"

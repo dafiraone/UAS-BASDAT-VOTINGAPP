@@ -9,7 +9,7 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login'
   },
   session: {
-      strategy: 'jwt'
+    strategy: 'jwt'
   },
   providers: [
     CredentialsProvider({
@@ -24,12 +24,12 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" }
       },
       async authorize(credentials, req) {
-          // Add logic here to look up the user from the credentials supplied
-          if (!credentials?.username || !credentials?.password) {
-              return null
-          }
+        // Add logic here to look up the user from the credentials supplied
+        if (!credentials?.username || !credentials?.password) {
+          return null
+        }
 
-          const user: any = await prisma.$queryRaw`SELECT * from user where email = ${credentials.username}`
+        const user: any = await prisma.$queryRaw`SELECT id, name, password, email, role, status_pilih from User where email = ${credentials.username}`
         if (!user[0] || !!!Number(user[0].status_pilih)) {
           // Any object returned will be saved in `user` property of the JWT
           return null
@@ -38,23 +38,22 @@ export const authOptions: NextAuthOptions = {
 
         const isPasswordValid = await compare(credentials.password, user[0].password)
         if (!isPasswordValid) return null
-        const {password, ...userData} = user[0]
+        const { password, ...userData } = user[0]
         return userData
-
       }
     })
   ],
   callbacks: {
-    session: ({session, token}) => {
-      const {jti, iat, ...tokenValue} = token
-      return {...session, ...tokenValue}
+    session: ({ session, token }) => {
+      const { jti, iat, ...tokenValue } = token
+      return { ...session, ...tokenValue }
     },
-    jwt: ({token, user}) => {
-      const {jti, iat, ...tokenValue} = token
-      return {...token, ...user}
+    jwt: ({ token, user }) => {
+      const { jti, iat, ...tokenValue } = token
+      return { ...token, ...user }
     }
   }
 }
 
 const handler = NextAuth(authOptions)
-export {handler as GET, handler as POST}
+export { handler as GET, handler as POST }

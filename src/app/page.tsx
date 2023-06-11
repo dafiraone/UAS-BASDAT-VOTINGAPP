@@ -14,7 +14,7 @@ export default async function Home() {
   return (
     <>
       <Navbar title="Voting App" user={session?.user?.name!}>
-        <Link href={'/login'}>Login</Link>
+        {session?.user?.name! && <Link href={'/vote'}>Vote</Link>}
         <Link href={'/about'}>About</Link>
       </Navbar>
       <main className="flex justify-center items-center">

@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const hashed = await hash(password, 10)
 
     try {
-        await prisma.$queryRaw`INSERT INTO user VALUES (null, ${email}, ${name}, ${hashed}, "User", true)`
+        await prisma.$queryRaw`INSERT INTO User VALUES (null, ${email}, ${name}, ${hashed}, "User", true)`
     } catch (error: any) {
         return NextResponse.json({
             message: error.message,
