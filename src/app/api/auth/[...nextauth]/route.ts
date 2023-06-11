@@ -51,7 +51,6 @@ export const authOptions: NextAuthOptions = {
     },
     jwt: ({token, user}) => {
       const {jti, iat, ...tokenValue} = token
-      console.log(user)
       return {...token, ...user}
     }
   }

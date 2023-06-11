@@ -1,56 +1,23 @@
 "use client"
 
+import { useSession } from "next-auth/react"
 import Image from "next/image"
-import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { signOut, useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
 
-interface Votes {
-    id: number
-    nama: string
-    visi: string
-    misi: string
-    jumlah_pemilih: number
-}
+export default function Candidate() {
+  const {data: session} = useSession()
+  const [votes, setVotes] = useState<Votes[]>([])
 
-export default function Vote() {
-    const {data: session} = useSession()
-    const [votes, setVotes] = useState<Votes[]>([])
-    const [onVoteAction, setOnVoteAction] = useState(false)
-    const router = useRouter()
+  useEffect(() => {
+    fetch('/api/getCandidate')
+        .then(res => res.json())
+        .then(data => setVotes(data))
+  }, [])
 
-    useEffect(() => {
-        fetch('/api/getCandidate')
-            .then(res => res.json())
-            .then(data => setVotes(data))
-    }, [])
-
-    const onSubmit = async (voteId: number) => {
-        setOnVoteAction(true)
-        try {
-            const res = await fetch('/api/voteAction', {
-                method: 'POST',
-                body: JSON.stringify({
-                    session: session?.user?.email, voteId
-                }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            signOut()
-        } catch (error) {
-            console.log(error)
-        }
-      }
-
-    return <>
-        <Navbar title="VOTE" user={session?.user?.name!}>
-            <Link href={'/'}>Home</Link>
-        </Navbar>
-        <main>
-            {onVoteAction ? (<h1 className="text-3xl font-bold text-center my-10 md:mb-20">Terimakasih Sudah Memilih</h1>)
-            : (<h1 className="text-3xl font-bold text-center my-10 md:mb-20">Pilih Salah Satu</h1>)}
-            <section className={`${onVoteAction ? 'hidden' : 'flex'} flex-wrap flex-col md:flex-row gap-10 justify-center items-center mb-16`}>
+  return (
+    <>
+    <section className={`flex-wrap flex-col md:flex-row gap-10 justify-center items-center mb-16`}>
                 {votes.map(v => (
                     <div key={v.id} className="card w-96 bg-base-100 shadow-xl">
                         <figure className="px-10 pt-10">
@@ -59,7 +26,7 @@ export default function Vote() {
                                 alt="" className="rounded-xl" width={500} height={500} />
                         </figure>
                         <div className="card-body items-center text-center">
-                            <h2 className="card-title">{v.nama}</h2>
+                            <h2 className="card-title">nama</h2>
 
                             <div className="join join-vertical w-full">
                                 <div className="collapse collapse-arrow join-item border border-base-300">
@@ -68,7 +35,7 @@ export default function Vote() {
                                         Visi
                                     </div>
                                     <div className="collapse-content">
-                                        <p>{v.visi}</p>
+                                        <p>visi</p>
                                     </div>
                                 </div>
                                 <div className="collapse collapse-arrow join-item border border-base-300">
@@ -77,29 +44,28 @@ export default function Vote() {
                                         Misi
                                     </div>
                                     <div className="collapse-content">
-                                        <p>{v.misi}</p>
+                                        <p>misi</p>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="card-actions">
-                                <button className="btn btn-neutral" onClick={() => window[v.id].showModal()}>VOTE</button>
-                                <dialog id={v.id.toString()} className="modal">
+                                <button className="btn btn-neutral" onClick={() => window[`D-${v.id}`].showModal()}>Hapus</button>
+                                <dialog id={`D-${v.id.toString()}`} className="modal">
                                     <form method="dialog" className="modal-box">
                                         <h3 className="font-bold text-lg">Yakin?</h3>
-                                        <p className="py-4">Kamu ingin vote {v.nama}</p>
+                                        <p className="py-4">Kamu ingin hapus? {v.nama}</p>
                                         <div className="modal-action">
-                                            <button className="btn" onClick={() => onSubmit(v.id)}>VOTE</button>
+                                            <button className="btn" onClick={() => onSubmit(v.id)}>Hapus</button>
                                         </div>
                                     </form>
                                 </dialog>
                             </div>
+                            <Link className="btn btn-sm btn-outline btn-secondary" href={`/admin/candidate/${v.id}`}>Edit</Link>
                         </div>
                     </div>
                 ))}
             </section>
-        </main>
     </>
-
-
+  )
 }
