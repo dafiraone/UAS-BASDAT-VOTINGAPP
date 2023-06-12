@@ -16,7 +16,7 @@ export default async function About() {
             <Link href={'/hasil'}>Perolehan</Link>
             <Link href={'/'}>Home</Link>
         </Navbar>
-        <main className="text-center text-black">
+        <main className="text-center text-black dark:text-white">
             <div className="md:flex justify-evenly pt-20">
                 <section className="p-5">
                     <h1 className="text-2xl font-semibold">Muhammad Daffa Deli Junior Irawan</h1>
