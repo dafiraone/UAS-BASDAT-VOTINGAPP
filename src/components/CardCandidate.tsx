@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 
 import { signOut } from "next-auth/react"
@@ -10,8 +9,7 @@ type Votes = {
         id: number
         image: string
         nama: string
-        visi: string
-        misi: string
+        desc: string
     }[]
     session: string
 }
@@ -57,19 +55,10 @@ export default function CardCandidate({ candidate, session }: Votes) {
                                     <div className="collapse collapse-arrow join-item border border-base-300">
                                         <input type="radio" name="my-accordion-1" />
                                         <div className="collapse-title text-xl font-medium">
-                                            Visi
+                                            Deskripsi
                                         </div>
                                         <div className="collapse-content">
-                                            <p>{v.visi}</p>
-                                        </div>
-                                    </div>
-                                    <div className="collapse collapse-arrow join-item border border-base-300">
-                                        <input type="radio" name="my-accordion-1" />
-                                        <div className="collapse-title text-xl font-medium">
-                                            Misi
-                                        </div>
-                                        <div className="collapse-content">
-                                            <p>{v.misi}</p>
+                                            <p>{v.desc}</p>
                                         </div>
                                     </div>
                                 </div>

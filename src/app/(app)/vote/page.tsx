@@ -8,8 +8,7 @@ type Votes = {
     id: number
     nama: string
     image: string
-    visi: string
-    misi: string
+    desc: string
     jumlah_pemilih?: number
 }
 

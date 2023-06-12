@@ -23,7 +23,6 @@ model Pilihan {
   id             Int     @id @default(autoincrement())
   nama           String
   image          String? @db.LongText()
-  visi           String
-  misi           String
+  description    String
   jumlah_pemilih Int
 }

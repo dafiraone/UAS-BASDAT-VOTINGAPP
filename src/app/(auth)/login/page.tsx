@@ -24,7 +24,7 @@ export default function Login() {
         <Link href={'/about'}>About</Link>
       </Navbar>
       <main className="md:flex md:justify-center items-center">
-        <section className="bg-[#F9F9F9] md:w-1/2 min-h-screen p-20">
+        <section className="hidden md:block bg-[#F9F9F9] md:w-1/2 min-h-screen p-20">
           <h1 className="text-3xl font-bold text-center mb-10 md:mb-20">Aplikasi Voting Online</h1>
           <div className="flex justify-center gap-2">
             <Image

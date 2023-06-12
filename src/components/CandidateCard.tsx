@@ -3,18 +3,18 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { startTransition, useEffect, useState } from "react"
+import { startTransition, useState } from "react"
 
 type Candidate = {
     id: number
     nama: string
     image: string
-    visi: string
-    misi: string
+    desc: string
 }
 
-export default function CandidateCard({ id, nama, visi, misi, image }: Candidate) {
+export default function CandidateCard({ id, nama, desc, image }: Candidate) {
     const [rePage, setRePage] = useState(false)
+    console.log(desc)
     const router = useRouter()
 
     const onSubmit = async (voteId: number) => {
@@ -53,19 +53,10 @@ export default function CandidateCard({ id, nama, visi, misi, image }: Candidate
                     <div className="collapse collapse-arrow join-item border border-base-300">
                         <input type="radio" name="my-accordion-1" />
                         <div className="collapse-title text-xl font-medium">
-                            Visi
+                            Deskripsi
                         </div>
                         <div className="collapse-content">
-                            <p>{visi}</p>
-                        </div>
-                    </div>
-                    <div className="collapse collapse-arrow join-item border border-base-300">
-                        <input type="radio" name="my-accordion-1" />
-                        <div className="collapse-title text-xl font-medium">
-                            Misi
-                        </div>
-                        <div className="collapse-content">
-                            <p>{misi}</p>
+                            <p>{desc}</p>
                         </div>
                     </div>
                 </div>

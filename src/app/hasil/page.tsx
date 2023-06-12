@@ -31,9 +31,7 @@ export default async function Result() {
             <Navbar title="Hasil Voting" user={session?.user?.name!}>
                 <Link href={'/'}>Home</Link>
             </Navbar>
-            <main className="max-w-screen max-h-screen flex justify-center items-center p-24">
-                <PieChart chartData={voteData} />
-            </main>
+            <PieChart chartData={voteData} />
         </>
 
     )

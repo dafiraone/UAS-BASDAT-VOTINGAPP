@@ -12,8 +12,7 @@ type Params = {
 
 export default function Edit({ params: voteId }: Params) {
   const [name, setName] = useState<string>('')
-  const [visi, setVisi] = useState<string>('')
-  const [misi, setMisi] = useState<string>('')
+  const [desc, setDesc] = useState<string>('')
   const [errorMessage, setErrorMessage] = useState<string>('')
   const router = useRouter()
 
@@ -28,8 +27,7 @@ export default function Edit({ params: voteId }: Params) {
       .then(res => res.json())
       .then(data => {
         setName(data.nama)
-        setVisi(data.visi)
-        setMisi(data.misi)
+        setDesc(data.desc)
       })
   }, [])
 
@@ -39,7 +37,7 @@ export default function Edit({ params: voteId }: Params) {
       const res = await fetch('/api/editVote', {
         method: 'POST',
         body: JSON.stringify({
-          id: voteId.id, name, visi, misi
+          id: voteId.id, name, desc
         }),
         headers: { 'Content-Type': 'application/json' }
       })
@@ -76,30 +74,15 @@ export default function Edit({ params: voteId }: Params) {
       <br />
       <div className="form-control">
         <label className="label">
-          <span className="label-text text-2xl">Visi</span>
+          <span className="label-text text-2xl">Deskripsi</span>
         </label>
         <label className="input-group">
           <input
             required
             type="text"
             className="input input-bordered"
-            value={visi}
-            onChange={e => setVisi(e.target.value)}
-          />
-        </label>
-      </div>
-      <br />
-      <div className="form-control">
-        <label className="label">
-          <span className="label-text text-2xl">Misi</span>
-        </label>
-        <label className="input-group">
-          <input
-            required
-            type="text"
-            className="input input-bordered"
-            value={misi}
-            onChange={e => setMisi(e.target.value)}
+            value={desc}
+            onChange={e => setDesc(e.target.value)}
           />
         </label>
       </div>

@@ -6,8 +6,7 @@ import { useState } from "react"
 export default function Admin() {
     const [name, setName] = useState<string>('')
     const [image, setImage] = useState<string | ArrayBuffer | null>("")
-    const [visi, setVisi] = useState<string>('')
-    const [misi, setMisi] = useState<string>('')
+    const [desc, setDesc] = useState<string>('')
     const [errorMessage, setErrorMessage] = useState<string>('')
 
     const uploadImage = (e: any) => {
@@ -31,7 +30,7 @@ export default function Admin() {
             const res = await fetch('/api/addVote', {
                 method: 'POST',
                 body: JSON.stringify({
-                    name, visi, misi, image
+                    name, desc, image
                 }),
                 headers: { 'Content-Type': 'application/json' }
             })
@@ -84,30 +83,15 @@ export default function Admin() {
             <br />
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text text-2xl">Visi</span>
+                    <span className="label-text text-2xl">Deskripsi</span>
                 </label>
                 <label className="input-group">
                     <input
                         required
                         type="text"
                         className="input input-bordered"
-                        value={visi}
-                        onChange={e => setVisi(e.target.value)}
-                    />
-                </label>
-            </div>
-            <br />
-            <div className="form-control">
-                <label className="label">
-                    <span className="label-text text-2xl">Misi</span>
-                </label>
-                <label className="input-group">
-                    <input
-                        required
-                        type="text"
-                        className="input input-bordered"
-                        value={misi}
-                        onChange={e => setMisi(e.target.value)}
+                        value={desc}
+                        onChange={e => setDesc(e.target.value)}
                     />
                 </label>
             </div>

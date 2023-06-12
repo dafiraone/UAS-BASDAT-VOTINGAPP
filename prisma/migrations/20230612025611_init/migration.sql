@@ -15,8 +15,8 @@ CREATE TABLE `User` (
 CREATE TABLE `Pilihan` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `nama` VARCHAR(191) NOT NULL,
-    `visi` VARCHAR(191) NOT NULL,
-    `misi` VARCHAR(191) NOT NULL,
+    `image` LONGTEXT NULL,
+    `description` VARCHAR(191) NOT NULL,
     `jumlah_pemilih` INTEGER NOT NULL,
 
     PRIMARY KEY (`id`)
