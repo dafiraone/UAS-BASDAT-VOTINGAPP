@@ -27,7 +27,7 @@ export default function Edit({ params: voteId }: Params) {
       .then(res => res.json())
       .then(data => {
         setName(data.nama)
-        setDesc(data.desc)
+        setDesc(data.description)
       })
   }, [])
 

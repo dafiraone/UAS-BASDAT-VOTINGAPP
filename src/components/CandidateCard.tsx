@@ -9,12 +9,11 @@ type Candidate = {
     id: number
     nama: string
     image: string
-    desc: string
+    description: string
 }
 
-export default function CandidateCard({ id, nama, desc, image }: Candidate) {
+export default function CandidateCard({ id, nama, description, image }: Candidate) {
     const [rePage, setRePage] = useState(false)
-    console.log(desc)
     const router = useRouter()
 
     const onSubmit = async (voteId: number) => {
@@ -56,7 +55,7 @@ export default function CandidateCard({ id, nama, desc, image }: Candidate) {
                             Deskripsi
                         </div>
                         <div className="collapse-content">
-                            <p>{desc}</p>
+                            <p>{description}</p>
                         </div>
                     </div>
                 </div>

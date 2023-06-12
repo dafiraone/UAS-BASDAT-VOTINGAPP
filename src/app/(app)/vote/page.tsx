@@ -8,13 +8,14 @@ type Votes = {
     id: number
     nama: string
     image: string
-    desc: string
+    description: string
     jumlah_pemilih?: number
 }
 
 export default async function Vote() {
     const session = await getServerSession()
     const candidate: Votes[] = await CandidateList() as Votes[]
+    console.log(candidate)
     return <>
         <Navbar title="VOTE" user={session?.user?.name!}>
             <Link href={'/'}>Home</Link>

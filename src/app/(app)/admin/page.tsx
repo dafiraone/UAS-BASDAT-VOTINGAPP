@@ -30,7 +30,7 @@ export default function Admin() {
             const res = await fetch('/api/addVote', {
                 method: 'POST',
                 body: JSON.stringify({
-                    name, desc, image
+                    name, description: desc, image
                 }),
                 headers: { 'Content-Type': 'application/json' }
             })

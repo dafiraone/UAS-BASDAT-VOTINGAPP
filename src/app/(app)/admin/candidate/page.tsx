@@ -5,7 +5,7 @@ type Votes = {
     id: number
     nama: string
     image: string
-    desc: string
+    description: string
     jumlah_pemilih?: number
 }
 
@@ -15,7 +15,7 @@ export default async function Candidate() {
         <>
             <section className='flex flex-wrap flex-col md:flex-row gap-10 justify-center items-center mb-16'>
                 {dataVoting.map((v: Votes) => (
-                    <CandidateCard key={v.id} id={v.id} nama={v.nama} desc={v.desc} image={v.image} />
+                    <CandidateCard key={v.id} id={v.id} nama={v.nama} description={v.description} image={v.image} />
                 ))}
             </section>
         </>

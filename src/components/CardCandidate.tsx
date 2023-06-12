@@ -9,7 +9,7 @@ type Votes = {
         id: number
         image: string
         nama: string
-        desc: string
+        description: string
     }[]
     session: string
 }
@@ -58,7 +58,7 @@ export default function CardCandidate({ candidate, session }: Votes) {
                                             Deskripsi
                                         </div>
                                         <div className="collapse-content">
-                                            <p>{v.desc}</p>
+                                            <p>{v.description}</p>
                                         </div>
                                     </div>
                                 </div>
