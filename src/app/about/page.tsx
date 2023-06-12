@@ -23,7 +23,7 @@ export default async function About() {
                     <p className="text-xl font-semibold">152022003</p>
                     <Image
                         className="border-black drop-shadow-xl rounded-full mx-auto mt-8"
-                        src={'https://images.unsplash.com/photo-1685793473835-96480c52c05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=712&q=80'}
+                        src={'/img/Vote_Illustration.png'}
                         alt="Daffa"
                         width={350}
                         height={350}
@@ -34,7 +34,7 @@ export default async function About() {
                     <p className="text-xl font-semibold">152022107</p>
                     <Image
                         className="border-black drop-shadow-xl rounded-full mx-auto mt-8"
-                        src={'https://images.unsplash.com/photo-1685793473835-96480c52c05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=712&q=80'}
+                        src={'/img/Vote_Illustration.png'}
                         alt="Zidan"
                         width={350}
                         height={350}
