@@ -1,9 +1,17 @@
 import PieChart from "@/components/PieChart"
 import CandidateList from "@/lib/candidateList"
+import Navbar from "@/components/Navbar"
+import Link from "next/link"
+import { getServerSession } from "next-auth"
 
 export const revalidate = 10
 
+export const metadata = {
+    title: 'Hasil Voting',
+}
+
 export default async function Result() {
+    const session = await getServerSession()
     const dataVoting: any = await CandidateList()
     const voteData = {
         labels: dataVoting.map((voted: any) => voted.nama),
@@ -19,8 +27,14 @@ export default async function Result() {
     }
 
     return (
-        <section className="w-1/2">
-            <PieChart chartData={voteData} />
-        </section>
+        <>
+            <Navbar title="Hasil Voting" user={session?.user?.name!}>
+                <Link href={'/'}>Home</Link>
+            </Navbar>
+            <main className="max-w-screen max-h-screen flex justify-center items-center p-24">
+                <PieChart chartData={voteData} />
+            </main>
+        </>
+
     )
 }

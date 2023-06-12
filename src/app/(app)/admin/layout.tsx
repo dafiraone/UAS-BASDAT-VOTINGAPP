@@ -44,9 +44,6 @@ export default async function RootLayout({
                   <li>
                     <Link href={'/admin/candidate'}>Candidate List</Link>
                   </li>
-                  <li>
-                    <Link href={'/admin/result'}>Vote Result</Link>
-                  </li>
                 </ul>
               </div>
             </div>

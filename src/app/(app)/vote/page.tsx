@@ -19,6 +19,7 @@ export default async function Vote() {
     return <>
         <Navbar title="VOTE" user={session?.user?.name!}>
             <Link href={'/'}>Home</Link>
+            <Link href={'/hasil'}>Perolehan</Link>
         </Navbar>
         <main>
             <section className="pb-16 px-6">

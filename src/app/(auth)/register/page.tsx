@@ -37,6 +37,7 @@ export default function Register() {
     return <>
         <Navbar title="Register">
             <Link href={'/'}>Home</Link>
+            <Link href={'/hasil'}>Perolehan</Link>
             <Link href={'/about'}>About</Link>
         </Navbar>
         <main className="md:flex md:justify-center items-center">

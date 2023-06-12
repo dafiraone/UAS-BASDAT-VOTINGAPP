@@ -13,6 +13,7 @@ export default async function About() {
     return <>
         <Navbar title="About Us" user={session?.user?.name!}>
             {session?.user?.name! && <Link href={'/vote'}>Vote</Link>}
+            <Link href={'/hasil'}>Perolehan</Link>
             <Link href={'/'}>Home</Link>
         </Navbar>
         <main className="text-center text-black">

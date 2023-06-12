@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar"
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
-import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 
 export default function Login() {
@@ -21,6 +20,7 @@ export default function Login() {
     <>
       <Navbar title="Login">
         <Link href={'/'}>Home</Link>
+        <Link href={'/hasil'}>Perolehan</Link>
         <Link href={'/about'}>About</Link>
       </Navbar>
       <main className="md:flex md:justify-center items-center">
