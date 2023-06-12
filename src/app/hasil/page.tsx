@@ -4,8 +4,6 @@ import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { getServerSession } from "next-auth"
 
-export const revalidate = 10
-
 export const metadata = {
     title: 'Hasil Voting',
 }
